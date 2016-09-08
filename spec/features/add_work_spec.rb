@@ -15,8 +15,11 @@ describe "the add a work process" do
   end
 
   it "gives error when no name is entered" do
-    visit new_work_path
+    Subgenre.create(description: "Afrofuturism")
+    visit subgenres_path
+    click_link 'Afrofuturism'
+    click_link 'Add a work'
     click_on 'Create Work'
-    expect(page).to
+    expect(page).to have_content 'errors'
   end
 end
